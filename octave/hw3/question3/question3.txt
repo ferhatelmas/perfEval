@@ -1,0 +1,22 @@
+=> loop: 1 meanTask1ResponseTime = 190.822382, meanTask2ResponseTime = 127.035733
+meanTask1Service = 50.044925, meanTask2Service = 49.949611
+=> loop: 2 meanTask1ResponseTime = 224.222048, meanTask2ResponseTime = 164.641912
+meanTask1Service = 50.531406, meanTask2Service = 50.526352
+=> loop: 3 meanTask1ResponseTime = 590.510013, meanTask2ResponseTime = 360.322407
+meanTask1Service = 49.854794, meanTask2Service = 49.854794
+=> loop: 4 meanTask1ResponseTime = 233.452868, meanTask2ResponseTime = 147.059938
+meanTask1Service = 49.464496, meanTask2Service = 49.383960
+=> loop: 5 meanTask1ResponseTime = 233.026736, meanTask2ResponseTime = 161.717985
+meanTask1Service = 50.606648, meanTask2Service = 50.606648
+=> loop: 6 meanTask1ResponseTime = 863.015817, meanTask2ResponseTime = 284.670691
+meanTask1Service = 48.824726, meanTask2Service = 46.243396
+=> loop: 7 meanTask1ResponseTime = 183.171986, meanTask2ResponseTime = 108.484119
+meanTask1Service = 49.879111, meanTask2Service = 49.874122
+=> loop: 8 meanTask1ResponseTime = 843.361875, meanTask2ResponseTime = 539.436656
+meanTask1Service = 50.484141, meanTask2Service = 50.484141
+=> loop: 9 meanTask1ResponseTime = 552.090796, meanTask2ResponseTime = 416.235901
+meanTask1Service = 49.825126, meanTask2Service = 49.800146
+=> loop: 10 meanTask1ResponseTime = 376.337430, meanTask2ResponseTime = 218.095288
+meanTask1Service = 49.856381, meanTask2Service = 49.816491
+Response times task1 = 429.001195, task2 = 252.770063
+Service numbers task1 = 49.937175, task2 = 49.653966

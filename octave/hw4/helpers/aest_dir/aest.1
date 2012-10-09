@@ -1,0 +1,171 @@
+.\" Man page for aest, Mark Crovella, April 1998
+'\"macro stdmacro
+.nr X
+.TH aest 1 "24 April 1998"
+.SH NAME
+aest \- implementation of the scaling estimator for the tail index of empirical
+heavy\-tailed distributions
+.SH SYNOPSIS
+.B aest 
+.BI -f "\0datafile"
+.BI -n "\0npts" 
+.BI -a "\0aggr_factor"
+.BI -l "\0number_levels" 
+[-wdgtsZ] [-h num] [-r num] 
+.SH DESCRIPTION
+.B aest 
+is an implementation of the scaling estimator, which estimates the tail
+index alpha of empirical heavy-tailed distributions.    It is described in 
+the paper "Estimating the Heavy Tail Index from Scaling Properties"
+by Mark E. Crovella and Murad S. Taqqu.   
+.PP
+When applied to a dataset, the default behavior of the estimator is to
+simply output the estimate of alpha obtained.   Options can be used to 
+direct it to output additional files for use in visualizing the scaling
+properties of the dataset.
+.PP
+.SH REQUIRED ARGUMENTS
+.TP 10
+.BI \-f "\0datafile"
+This option specifies the file containing the input data for the
+program.   The file is assumed to consist of floating-point
+numbers, one per line.   Lines beginning with # in the input file are
+ignored. 
+.TP 10
+.BI \-n "\0npts" 
+The number of points in the file (should be equal to the number of lines not
+starting with #)
+.TP 10
+.BI \-a "\0aggr_factor"
+The factor used to form successive aggregations of the dataset. A good
+default is 2.
+.TP 10
+.BI \-l "\0number_levels"
+The number of aggregations (levels) to use.  A good default is 10.
+.PP
+.SH OPTIONAL ARGUMENTS
+.TP 10
+.BI -w 
+Using this option causes 
+.B aest
+to write out files containing the log-log complementary distributions
+(LLCDs) that it used in forming its estimate.   These files can be 
+useful in graphically interpreting the output from 
+.B aest.
+The filenames used have the format
+
+XXXX.sumNNNN.llcd
+
+where XXXX is the data filename supplied via the
+.B -f
+argument and NNNN is the level of aggregation of the dataset used in
+forming the LLCD.   The file contains <x,y> pairs, one per line;  this
+format is suitable for plotting in gnuplot and other plotting packages.
+In addition this option causes 
+.B aest
+to write out a file named
+
+XXXX.aest.gp
+
+which contains  commands for the plotting program gnuplot that will
+instruct it to plot the LLCD files.  
+.PP
+.TP 10
+.B -d
+Using this option causes 
+.B aest
+to write out a file containg all of the trial alphas used in forming the
+alpha estimate.  The file's name has the format
+
+XXXX.alphas
+
+where XXXX is the data filename supplied via the
+.B -f
+argument.
+.PP
+.TP 10
+.BI -g
+Using this option causes 
+.B aest
+to write out a file
+containing the <x,y> coordinates of all of the points used in forming the
+alpha estimate.   This is useful in conjunction with the llcd files
+output via the 
+.B -w 
+option.
+.PP
+.TP 10
+.BI -t 
+(terse) only emit the estimate (if available).
+.PP
+.TP 10
+.BI -h "\0num"
+change the threshold for relative error that is used to determine
+whether to accept a trial alpha estimate.  This corresponds to the
+parameter theta described in the paper.   Default value is 0.10.
+.PP 
+.TP 10
+.BI -s
+This option causes the LLCD files output to be subsampled.   The LLCD
+files can be quite large, and typically will contain many points that
+have indistinguishable locations on a plot.   The subsample option will
+only output LLCD points that are more than 0.01 units apart 
+in plotting coordinates.  The result is that the LLCD files are
+much smaller and yet when plotted still appear the same visually.
+.PP
+.TP 10
+.BI -r "\0num"
+When used in conjunction with the
+.B -s
+option, changes the threshold value used in subsampling
+to the value specified by
+.B num.   
+For example, 
+.BI -r 0.02 
+works well and cuts the size of the
+LLCD files by another factor of two.
+.PP
+.TP 10
+.B -Z
+The default behavior of 
+.B aest
+is to subtract the dataset mean from all points before constructing the
+LLCDs.   Using this option skips the zeromean subtraction step.
+.SH EXAMPLES
+.LP
+The following example:
+
+.B "example% aest -f rawdata -n 32450 -a 2 -l 10 -wgs"
+
+will result in aest using aggregations of the dataset (contained in
+rawdata) that range in powers of two from 2 to 1024.   Because of the
+.B -w
+option it will create 
+the file 
+.B rawdata.aest.gp
+containing plotting commands for gnuplot, as well as creating
+the plotfiles
+.B rawdata.sum2.llcd
+through
+.B rawdata.sum1024.llcd.
+Because of the 
+.B -s
+option these LLCD files will be subsampled to reduce their size.
+Finally, due to the 
+.B -g 
+option it will create the file
+.B rawdata.alphas
+which will also be plotted by the commands in 
+.B rawdata.aest.gp.
+.PP
+To see a plot on the screen, user then need merely execute gnuplot, and
+enter the command
+
+.B gnuplot> load rawdata.aest.gp
+
+.SH "SEE ALSO"
+.BR gnuplot(1)
+.SH AUTHOR
+Mark Crovella, Computer Science Department, Boston University;
+crovella@bu.edu.
+.\".Ee

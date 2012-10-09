@@ -1,0 +1,49 @@
+\documentclass[11pt]{article}
+\usepackage{ex-stile}
+\usepackage{graphicx} %to include pictures
+
+\begin{document}
+
+\title{\textbf{Performance Evaluation Mini Project Proposal}}
+\author{Ferhat Elmas}
+\date{30.03.2012 Friday}
+\maketitle
+
+\begin{center}
+\section*{On Choosing a Task Assignment Policy for a Distributed Server System}
+
+\section*{Abstract}
+\end{center}
+The need of high capacity server is rapidly increasing and distributed systems are the best solution due to scalability and cost-effectiveness. An arriving request to the distributed system must be assigned to one of the hosts. The goal of our study is to decide on which policy is better for assigning requests to hosts in terms of task size variability. In our model, hosts process tasks in First-Come-First-Serve order and the required service demand is known in advance. We compare four policies: Round Robin, Random, Size-Based, in which all tasks within a particular range are assigned to a particular host, Dynamic-Least-Work-Remaining, in which task is assigned to the host that has least remaining work.
+
+\section*{Goal}
+I aim to study the performance of these assignment policies, taking this paper as a base, in terms of task size variability, the number of the hosts in the distributed system and the arrival rate of the tasks. In the paper, there is no preemptive scheduling and tasks are processed in FIFO manner in hosts. Therefore, as extra goals, preemptive scheduling in hosts and hosts that are different in power can be added into the model. Hybrid scheduler, analyzes the tasks and chooses different policies for certain time can be compared to all other policies.
+
+\section*{Assumptions}
+\begin{itemize}
+	\item Service demand of the task is known in advance. Knowing demand exactly is quite difficult but with exponential averaging method, schedulers can predict the demand closely. Therefore, this isn't totally meaningless.
+	\item FIFO processing in hosts.
+	\item Identical hosts.
+\end{itemize}   
+
+\section*{Parameters}
+\begin{itemize}
+	\item Task size variability \textit{i.e} [1, 100] ms uniform.
+	\item Task arrival rate \textit{i.e} poisson distributed. 
+	\item Number of the hosts \textit{i.e} 8, 16.
+\end{itemize}
+
+\section*{Preformance Evaluation Metrics}
+\begin{itemize}
+	\item Throughput
+	\item Mean waiting time
+	\item Mean slow down - Ratio of waiting time and service demand of a task
+	\item Utilization and load balancing
+\end{itemize}
+
+\section*{Reference}
+Mor Harchol-Balter and Mark E. Crovella and Cristina D. Murta.
+On Choosing a Task Assignment Policy for a Distributed Server System.
+Journal of Parallel and Distributed Computing 1999.
+
+\end{document}

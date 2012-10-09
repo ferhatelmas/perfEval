@@ -1,0 +1,19 @@
+# Log files are called S-<ue>.log where <ue> is 
+# the number of threads per process
+# We assume all simulations were run with CP=4.
+
+uemin=1;
+uemax=125;
+uestep=2;
+
+echo "" >d.log
+echo "" >t.log
+
+for ((ue=$uemin; ue<=$uemax; ue=$ue+$uestep)) ; do {
+	nou=$((ue*4))
+	gawk '// {printf "%010d %06d\n", $8, $9}' S-$ue.log |sort \
+	    | gawk -v nou=$nou -f d.awk >>d.log
+	echo $nou `wc -l <S-$ue.log` `gawk '// {printf "%010f %010f\n", \
+	    $4+$5/1000000, $8+$9/1000000}' S-$ue.log | gawk -f mio.awk` >>t.tmp
+}; done
+gawk '// {printf "%d %3.3d\n",$1,$2/$3}' <t.tmp >t.log

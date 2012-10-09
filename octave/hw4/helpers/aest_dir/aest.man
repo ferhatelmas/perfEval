@@ -1,0 +1,198 @@
+
+
+
+aest(1)                   User Commands                   aest(1)
+
+
+
+NNNNAAAAMMMMEEEE
+     aest - implementation of the scaling estimator for the  tail
+     index of empirical heavy-tailed distributions
+
+SSSSYYYYNNNNOOOOPPPPSSSSIIIISSSS
+     aaaaeeeesssstttt ----ffff _d_a_t_a_f_i_l_e ----nnnn _n_p_t_s ----aaaa _a_g_g_r__f_a_c_t_o_r ----llll _n_u_m_b_e_r__l_e_v_e_l_s  [-
+     wdgtsZ] [-h num] [-r num]
+
+DDDDEEEESSSSCCCCRRRRIIIIPPPPTTTTIIIIOOOONNNN
+     aaaaeeeesssstttt is an implementation of the  scaling  estimator,  which
+     estimates  the  tail  index  alpha of empirical heavy-tailed
+     distributions.    It is described in the  paper  "Estimating
+     the  Heavy  Tail  Index  from Scaling Properties" by Mark E.
+     Crovella and Murad S. Taqqu.
+
+     When applied to a dataset, the default behavior of the esti-
+     mator  is  to  simply output the estimate of alpha obtained.
+     Options can be used to direct it to output additional  files
+     for  use  in  visualizing  the  scaling  properties  of  the
+     dataset.
+
+RRRREEEEQQQQUUUUIIIIRRRREEEEDDDD AAAARRRRGGGGUUUUMMMMEEEENNNNTTTTSSSS
+     ----ffff _d_a_t_a_f_i_l_e
+               This option  specifies  the  file  containing  the
+               input  data for the program.   The file is assumed
+               to consist  of  floating-point  numbers,  one  per
+               line.    Lines  beginning with # in the input file
+               are ignored.
+
+     ----nnnn _n_p_t_s    The number of points in the file (should be equal
+               to the number of lines not starting with #)
+
+     ----aaaa _a_g_g_r__f_a_c_t_o_r
+               The factor used to form successive aggregations of
+               the dataset. A good default is 2.
+
+     ----llll _n_u_m_b_e_r__l_e_v_e_l_s
+               The number of aggregations  (levels)  to  use.   A
+               good default is 10.
+
+OOOOPPPPTTTTIIIIOOOONNNNAAAALLLL AAAARRRRGGGGUUUUMMMMEEEENNNNTTTTSSSS
+     ----wwww        Using this option causes aaaaeeeesssstttt to write  out  files
+               containing the log-log complementary distributions
+               (LLCDs) that it  used  in  forming  its  estimate.
+               These  files  can  be useful in graphically inter-
+               preting the output from aaaaeeeesssstttt.... The  filenames  used
+               have the format
+
+               XXXX.sumNNNN.llcd
+
+               where XXXX is the data filename supplied  via  the
+               ----ffff  argument  and NNNN is the level of aggregation
+
+
+
+SunOS 5.4          Last change: 24 April 1998                   1
+
+
+
+
+
+
+aest(1)                   User Commands                   aest(1)
+
+
+
+               of the dataset used in  forming  the  LLCD.    The
+               file  contains  <x,y>  pairs,  one per line;  this
+               format is suitable for  plotting  in  gnuplot  and
+               other  plotting packages.  In addition this option
+               causes aaaaeeeesssstttt to write out a file named
+
+               XXXX.aest.gp
+
+               which contains  commands for the plotting  program
+               gnuplot  that  will  instruct  it to plot the LLCD
+               files.
+
+     ----dddd        Using this option causes aaaaeeeesssstttt to write out a  file
+               containg  all  of the trial alphas used in forming
+               the alpha estimate.  The file's name has the  for-
+               mat
+
+               XXXX.alphas
+
+               where XXXX is the data filename supplied  via  the
+               ----ffff argument.
+
+     ----gggg        Using this option causes aaaaeeeesssstttt to write out a  file
+               containing  the  <x,y>  coordinates  of all of the
+               points used in forming the alpha estimate.    This
+               is  useful in conjunction with the llcd files out-
+               put via the ----wwww option.
+
+     ----tttt        (terse) only emit the estimate (if available).
+
+     ----hhhh _n_u_m    change the threshold for relative  error  that  is
+               used  to determine whether to accept a trial alpha
+               estimate.  This corresponds to the parameter theta
+               described in the paper.   Default value is 0.10.
+
+     ----ssss        This option causes the LLCD  files  output  to  be
+               subsampled.    The  LLCD files can be quite large,
+               and typically will contain many points  that  have
+               indistinguishable  locations on a plot.   The sub-
+               sample option will only output  LLCD  points  that
+               are more than 0.01 units apart in plotting coordi-
+               nates.  The result is that the LLCD files are much
+               smaller and yet when plotted still appear the same
+               visually.
+
+     ----rrrr _n_u_m    When used  in  conjunction  with  the  ----ssss  option,
+               changes the threshold value used in subsampling to
+               the value specified by nnnnuuuummmm....  For  example,  ----rrrr_0._0_2
+               works  well and cuts the size of the LLCD files by
+               another factor of two.
+
+
+
+
+
+SunOS 5.4          Last change: 24 April 1998                   2
+
+
+
+
+
+
+aest(1)                   User Commands                   aest(1)
+
+
+
+     ----ZZZZ        The default behavior of aaaaeeeesssstttt is  to  subtract  the
+               dataset  mean  from all points before constructing
+               the LLCDs.   Using this option skips the  zeromean
+               subtraction step.
+
+EEEEXXXXAAAAMMMMPPPPLLLLEEEESSSS
+     The following example:
+
+     eeeexxxxaaaammmmpppplllleeee%%%% aaaaeeeesssstttt ----ffff rrrraaaawwwwddddaaaattttaaaa ----nnnn 33332222444455550000 ----aaaa 2222 ----llll 11110000 ----wwwwggggssss
+
+     will result in aest using aggregations of the dataset  (con-
+     tained  in  rawdata)  that  range in powers of two from 2 to
+     1024.   Because of the ----wwww option it  will  create  the  file
+     rrrraaaawwwwddddaaaattttaaaa....aaaaeeeesssstttt....ggggpppp containing plotting commands for gnuplot, as
+     well as creating  the  plotfiles  rrrraaaawwwwddddaaaattttaaaa....ssssuuuummmm2222....llllllllccccdddd  through
+     rrrraaaawwwwddddaaaattttaaaa....ssssuuuummmm1111000022224444....llllllllccccdddd....  Because  of  the ----ssss option these LLCD
+     files will be subsampled to reduce their size.  Finally, due
+     to  the  ----gggg  option  it  will create the file rrrraaaawwwwddddaaaattttaaaa....aaaallllpppphhhhaaaassss
+     which  will   also   be   plotted   by   the   commands   in
+     rrrraaaawwwwddddaaaattttaaaa....aaaaeeeesssstttt....ggggpppp....
+
+     To see a plot on the screen, user then need  merely  execute
+     gnuplot, and enter the command
+
+     ggggnnnnuuuuppppllllooootttt>>>> llllooooaaaadddd rrrraaaawwwwddddaaaattttaaaa....aaaaeeeesssstttt....ggggpppp
+
+
+SSSSEEEEEEEE AAAALLLLSSSSOOOO
+     ggggnnnnuuuuppppllllooootttt((((1111))))
+
+AAAAUUUUTTTTHHHHOOOORRRR
+     Mark Crovella, Computer Science Department,  Boston  Univer-
+     sity; crovella@bu.edu.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SunOS 5.4          Last change: 24 April 1998                   3
+
+
+

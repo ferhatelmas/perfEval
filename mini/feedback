@@ -1,0 +1,14 @@
+Phase 1
+For presentation:
+- Exponential task size simulation will be done and compared to bounded pareto distribution
+- Throughput and Utilization will be removed from performance metrics, they can only be shown for the correctness of the simulation.
+- Final findings will be compared to the conclusions of the paper.
+- Slowdown is important property, slowdown distribution will be shown for task size groups.
+- References and used each formula will be added into presentation. 
+
+Phase 2
+For implementation:
+- Queue lengths of the hosts
+- Guessed steady state problem, modified implementation and increased end of simulation from 10^5 to 10^7
+For presentation:
+- Confidence interval and reference

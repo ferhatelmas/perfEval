@@ -1,0 +1,17 @@
+# surge parameters:
+# no_of_req = 15000
+# no_of_files = 4000
+# type_of_matching = 1
+# window_size=3
+
+time=300;
+uemin=1;
+uemax=125;
+uestep=2;
+
+for ((ue=$uemin; ue<=$uemax; ue=$ue+$uestep)) ; do {
+   ./Surge 4 $ue $time 192.168.X.1 / 1
+   # Let server rest for a while before restarting
+   sleep 60
+   mv Surge.log S-$ue.log
+}; done

@@ -1,0 +1,195 @@
+\documentclass[11pt]{article}
+\usepackage{ex-stile}
+\usepackage{graphicx} 
+
+\begin{document}
+
+\title{\textbf{Performance Evaluation Homework 3}}
+\author{Ferhat Elmas}
+\date{29.03.2012 Thursday}
+\maketitle
+
+\section*{Problem 1 - Simulate}
+
+    \begin{center}
+    \begin{table}[ht]
+    \centerline{
+    \begin{tabular}{c}
+	\resizebox{4in}{!}{\includegraphics{question1}} \\
+     \end{tabular}} 
+     \caption{Number of requests arrived and serviced vs Time (intensity $\lambda=50$)}
+     \label{q1:table1}
+     \end{table}
+     \end{center}
+
+\clearpage
+
+    \begin{center}
+    \begin{table}[ht]
+    \centerline{
+    \begin{tabular}{c}
+	\resizebox{4in}{!}{\includegraphics{question2}} \\
+     \end{tabular}} 
+     \caption{Number of tasks in processor queue vs Time (intensity $\lambda=50$)}
+     \label{q1:table2}
+     \end{table}
+     \end{center}
+
+    \begin{center}
+    \begin{table}[ht]
+    \centerline{
+    \begin{tabular}{|c|c|c|c|c|}
+	\hline
+	& Task1 Response Time & Task2 Response Time & Task1 Service Rate & Task2 Service Rate \\
+	\hline
+	Run1&190.82&127.04&50.04&49.94 \\
+	\hline
+	Run2&224.22&164.64&50.53&50.52 \\
+	\hline
+	Run3&590.51&360.32&49.85&49.86 \\
+	\hline
+	Run4&233.45&147.05&49.46&49.38 \\
+	\hline
+	Run5&233.02&161.71&50.61&50.61 \\
+	\hline
+	Run6&863.01&284.67&48.82&46.24 \\
+	\hline
+	Run7&183.17&108.48&49.87&49.87 \\
+	\hline
+	Run8&843.36&539.47&50.48&50.49 \\
+	\hline
+	Run9&552.09&416.24&49.82&49.80 \\
+	\hline
+	Run10&376.34&218.09&49.85&49.81 \\
+	\hline
+	Avg&429.00&252.77&49.93&49.65 \\
+	\hline
+     \end{tabular}} 
+     \caption{Mean response time and service rate for task 1 and 2}
+     \label{q1:table3}
+     \end{table}
+     \end{center}
+
+\clearpage
+
+\section*{Problem 2 - Stationarity}
+
+If we have the ratio of mean of service distribution and arrival time lower than 1, we have stationary system. For service time mean, task 2 has 1.75 ms mean since it is uniform between 1.5 and 2, $mean = (1.5 + 2) / 2$. Task 1 has a mean of around 12 ms. Therefore, when we sum these two means, we get 14 ms service time. These means requests must come at least in $1000/14 = 71$ per second. And we see this numerical result in the plot because around 65 request per second, the length of the queue starts to increase rapidly.
+
+    \begin{center}
+    \begin{table}[ht]
+    \centerline{
+    \begin{tabular}{c}
+	\resizebox{4in}{!}{\includegraphics{question4}} \\
+     \end{tabular}} 
+     \caption{Intensity vs Mean Queue Length}
+     \label{q2:table1}
+     \end{table}
+     \end{center}
+
+\clearpage
+
+\section*{Problem 3 - Remove Trasients}
+
+    \begin{center}    
+    \begin{table}[ht]
+    \centerline{
+    \begin{tabular}{|c|c|c|}
+	\hline
+	Parameter&Lower Bound&Upper Bound \\
+	\hline 
+	Median Task 1 with intensity 50&11.82&17.92 \\
+	\hline
+	Median Task 2 with intensity 50&12.37&18.92 \\
+	\hline
+	Median Task 1 with intensity 70&84.21&206.55 \\
+	\hline
+	Median Task 2 with intensity 70&84.77&124.38 \\
+	\hline
+	Mean Task 1 with intensity 50&14.01&21.50 \\
+	\hline
+	Mean Task 2 with intensity 50&14.95&22.81 \\
+	\hline
+	Mean Task 1 with intensity 70&123.49&206.57 \\
+	\hline
+	Mean Task 2 with intensity 70&116.76&195.24 \\
+	\hline
+     \end{tabular}} 
+     \caption{Confidence Intervals for the median and mean of average number of tasks in the system}
+     \label{q3:table1}
+     \end{table}
+     \end{center}
+
+The bigger Lorenz curve gap, the less stationary the system is because this means system behaves similar at start but thensignificantly differs. 
+
+    \begin{center}
+    \begin{table}[ht]
+    \centerline{
+    \begin{tabular}{|c|c|}
+	\hline
+	Parameter&Lorenz Gap \\
+	\hline
+	Task 1 with intensity 50&0.2055 \\
+	\hline
+	Task 2 with intensity 50&0.2025 \\
+	\hline
+	Task 1 with intensity 70&0.3340 \\
+	\hline
+	Task 2 with intensity 70&0.3216 \\
+	\hline
+     \end{tabular}} 
+     \caption{Lorenz Curve Gaps of average number of tasks in the system}
+     \label{q3:table2}
+     \end{table}
+     \end{center}
+
+\clearpage
+
+    \begin{center}
+    \begin{table}[ht]
+    \centerline{
+    \begin{tabular}{c}
+	\resizebox{2in}{!}{\includegraphics{question6_1}} \\
+	\resizebox{2in}{!}{\includegraphics{question6_2}} \\
+	\resizebox{2in}{!}{\includegraphics{question6_3}} \\
+	\resizebox{2in}{!}{\includegraphics{question6_4}} \\
+     \end{tabular}} 
+     \caption{Lorenz Curves of average number of tasks in the system}
+     \label{q3:table3}
+     \end{table}
+     \end{center}
+
+For redo calculation, we will remove the trasients but this is quite difficult task. The best way is to visually determine, plot for the various values and choose when output doesn't seem to exhibit a clear trend behaviour. In intensity 50 case, arrivals are less than services so we can start from very start and there is no need to remove. For intensity 70 case, I got below table.
+
+    \begin{center}
+    \begin{table}[ht]
+    \centerline{
+    \begin{tabular}{|c|c|c|}
+	\hline
+	Parameter&Lower Bound&Upper Bound \\
+	\hline
+	Median Task 1 with intensity 70&43.97&237.35 \\
+	\hline
+	Median Task 2 with intensity 70&48.00&266.11 \\
+	\hline
+	Mean Task 1 with intensity 70&163.64&384.02 \\
+	\hline
+	Mean Task 2 with intensity 70&155.26&346.85 \\
+	\hline
+     \end{tabular}} 
+     \caption{Confidence Intervals for the median and mean of average number of tasks in the system}
+     \label{q3:table4}
+     \end{table}
+     \end{center}
+
+\section*{Problem 4 - Little's Law}
+If we multiply customer arriving rate by expected response time, we get the average queue length. We have parameters 50 per second for arrival rate, 0.43 s for response time then we get 21.5 for queue length and from our analysis, we see it in the confidence intervals by task1=[10, 18] and task2=[11, 18]. 
+
+\section*{Reference}
+
+\begin{itemize}
+	\item All code is here: http://goo.gl/5uZda 
+\end{itemize}
+
+\end{document}
+

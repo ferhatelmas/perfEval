@@ -1,0 +1,11 @@
+BEGIN{
+  maxWaitingTime = 0;
+  maxSlowDown = 0;
+}
+{
+  if($1 > maxWaitingTime) maxWaitingTime = $1;
+  if($2 > maxSlowDown) maxSlowDown = $2;
+}
+END{
+  print maxWaitingTime, "\t", maxSlowDown;
+}

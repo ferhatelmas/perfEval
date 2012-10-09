@@ -1,0 +1,14 @@
+=> loop: 30 meanQueueLength = 4.135509
+=> loop: 40 meanQueueLength = 12.461598
+=> loop: 50 meanQueueLength = 31.231942
+=> loop: 60 meanQueueLength = 319.122899
+=> loop: 70 meanQueueLength = 1219.686691
+=> loop: 80 meanQueueLength = 470.522681
+=> loop: 90 meanQueueLength = 2092.681531
+=> loop: 100 meanQueueLength = 3748.722461
+=> loop: 110 meanQueueLength = 2683.495603
+=> loop: 120 meanQueueLength = 3255.832883
+=> loop: 130 meanQueueLength = 2840.843505
+=> loop: 140 meanQueueLength = 3458.194040
+=> loop: 150 meanQueueLength = 3842.621371
+Mean Queue Length = 1844.580978
